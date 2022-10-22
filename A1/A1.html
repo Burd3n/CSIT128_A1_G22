@@ -150,12 +150,10 @@
 		</dl>
 	</body>
 	<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-	<h1>Part 4</h1>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	</head>
 
 	<!-- Scripts -->
 	<script>
@@ -172,95 +170,211 @@
 
 	document.getElementById('date').value = date +' ' + day;
 	}
-	</script>
 
-	<script>
-	function StringSearch() 
-	{
-		var SearchTerm = document.getElementById("text_box_1").value;
-		var TextSearch = document.getElementById("t4").value;
-
-		if (SearchTerm.length > 0 && TextSearch.indexOf(SearchTerm) > -1) 
-		{
-			alert("String Found. Search Complete");
-		} else 
-		{
-			alert("No Data found in Text Area");
-		}
-	}
-	</script>
-
-	<script>
     function findReplace()
 	{
-      /* declare variables to get the value */
-      var userText = document.getElementById("t4").value;
-      var find = document.getElementById("text_box_1").value;
-      var replace = document.getElementById("text_box_2").value;
-      var newText;
-      var count = 0;
-      var i = 0;
-      var index = userText.indexOf(find);
+		/*Declare variables to get the value of the following data*/
+		var userText = document.getElementById("msgText").value;
+		var find = document.getElementById("findText").value;
+		var replace = document.getElementById("replaceText").value;
+		var newText;
+		var count = 0;
+		var i = 0;
+		var index = userText.indexOf(find);
 
-      /*break the strong of words into substrings and join back after*/
-      newText = userText.split(find).join(replace);
+		/* Break long string of text into substrings in an array Format
+		and merge back into one long string once words are replaced */
+		newText = userText.split(find).join(replace);
 
-      /*loops according to number of substrings*/
-      for (i=0; i < userText.split(" ").length; i++) 
-	  {
-        if (index > -1) 
+		/* Loops according to number of substrings */
+		for (i = 0; i < userText.split(" ").length; i++) 
 		{
-          ++count;
-          index = userText.indexOf(find, ++index);
-        }
-      }
-      document.getElementById("t4").value = newText;
-      document.getElementById("replacement").innerHTML = count + " " + "replacement(s) made";
-    }
+			if (index > -1) 
+			{
+				++count;
+				index = userText.indexOf(find, ++index);
+			}
+		}
+
+			/* Displays number of replacements made */
+			document.getElementById("msgText").value = newText;
+			document.getElementById("replacementsMade").innerHTML = count + " " + "instances was replaced";
+	}
+
+		function disableReplace()
+		{
+			/* Declare variables to get value of the following */
+			var find = document.getElementById("findText").value;
+			var replace = document.getElementById("replaceText");
+			var rButton = document.getElementById("repBut");
+
+			/* If Find field is empty disable Replace field*/
+			if (find == null || find.trim() == "") 
+			{
+				replace.disabled = true;
+			}
+			else 
+			{
+				replace.disabled = false;
+			}
+
+			/* If replace box disabled, replace button disable too*/
+			if (replace = true) 
+			{
+				rButton.disabled = false;
+			}
+			else 
+			{
+				rButton.disabled = true;
+			}
+		}
+	
+	function validateName()
+	{
+			/* Declare variables to get value of id fname*/
+			var name = document.getElementById("fname").value;
+
+			/*Check for name input else display prompt */
+			if (name == null || name.trim() == "") 
+			{
+				document.getElementById("nameError").innerHTML =
+				" *Please enter name";
+				return false;
+			}
+			else 
+			{
+				document.getElementById("nameError").innerHTML = " ";
+			}
+
+			/* Check if name input has no special characters.
+			Anything that is not alphabets or numbers will be flagged. */
+			if (/[^A-Z][^a-z][^0-9]$/.test(name) == true) 
+			{
+				document.getElementById("nameError").innerHTML =
+				" *No special characters allowed";
+				return true;
+			}
+			else 
+			{
+				document.getElementById("nameError").innerHTML = " ";
+			}
+
+		}
+
+		function validateMod()
+		{
+			/* Declare variable to get value from id modcode */
+			var module = document.getElementById("modcode").value;
+
+			/*Check if empty else display error */
+			if (module == null || module.trim() == "") 
+			{
+				document.getElementById("modError").innerHTML =
+				" *Please enter a module code";
+
+				return false;
+			}
+			else 
+			{
+				document.getElementById("modError").innerHTML = " ";
+			}
+
+			/*Check if module start with 3 lowercase letters
+			and end with 4 valid digits else display error message*/
+			if (/[A-Z]{4}[0-9]{3}$/.test(module) == false) 
+			{
+				document.getElementById("modError").innerHTML =
+				" *Incomplete or Incorrect Module Code";
+
+				return false;
+			}
+			else {
+				document.getElementById("modError").innerHTML = " ";
+			}
+		}
 	</script>
-	</head>
-		<body onload="currentDate()">
-			<form action=" " method="get">
-			<div>
-				Name:<br>
-				<input type="text" name="t1" size="30" placeholder="Yang Run" pattern="[A-Za-z0-9]{1,}" required><br>
-				Module Code:<br>
-				<input type="text" name="t2" size="30" pattern="[A-Z]{4}[0-9]{3}" required><br>
-				Date: <br>
-				<input type="text" name ="t3" id="date"/ readonly><br>
-				<br><br>
-			</div>
-	</form>
-	<form action="https://translate.google.com">
-		<div>
-			<textarea name="t4" id="t4" rows="3" cols="20">Hello 202210.</textarea><br>
-			Search For: <br>
-			<input type="text" name="text_box_1" id="text_box_1">
-			<button type="button" id="button1" onclick="StringSearch();">Search</button><br>
-			Replace with: <br>
-			<input type="text" name="text_box_2" id ="text_box_2">
-			<button type"button" id="button2" onclick="findReplace()">Replace</button>
-			<br>
-		</div>
-		<br>
-		<div id="sourceLang">
-			Select Source Language: <br>
-			<select name="sl" id="sl">
-			<option value="eng" selected="selected">English</option>
-			<option value="mal">Malay</option>
-			</select>
-		</div>
-		<br>
-		<div name="tl" id="tl">
-			Select Target Language: <br>
-			<input type="radio" name= "lang" value="ko" checked>Korean
-			<input type="radio" name= "lang" value="en">English
-			<input type="radio" name= "lang" value="zh-CN">Chinese
-			<input type="radio" name= "lang" value="ma">Malay
-			<input type="radio" name= "lang" value="ja">Japanese
-		</div>
-		<input type="submit" value="Translate">
-		<input type="reset" value="Reset form">
-	</form>
-	</body>
+	<div class="part 4">
+	<body>
+		<h1>Part 4: Student Info and Translate</h1>
+		<form action="https://translate.google.com" method="get" target="blank">
+			<table id="mainTable" border="1">
+				<tr height="30px">
+					<td width="250px" class="blacktext bold">
+						Name:
+					</td>
+					<td colspan="3" width="550px">
+						<input type="text" id="fname" onkeyup="validateName()" placeholder="No special characters allowed." size="30" >
+						<span id="nameError" class="redtext bold"></span>
+						<br>
+					</td>
+				</tr>
+				<tr height="30px">
+					<td class="blacktext bold">
+						Module Code:
+					</td>
+					<td colspan="3">
+						<input type="text" id="modcode" onkeyup="validateMod()" maxlength="7" size="30" placeholder="Format: AB123">
+						<span id="modError" class="redtext bold"></span>
+						<br>
+					</td>
+				</tr>
+				<tr height ="30px" >
+					<td class="blacktext bold">
+						Current Date & Time:<br>
+					</td>
+					<td colspan="3">
+						<body onload="currentDate()">
+						<input id="date" type="text" size="30" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2" height="100px" class="blacktext bold">
+						Message:<br>
+						<textarea name="text" id="msgText" rows="3" cols="20" maxlength="500">Hello 202210</textarea><br>
+						<div class="redtext bold">*Max 500 Characters</div>
+					</td>
+					<td align="center" class="blacktext bold">
+						Find:<br>
+						<input type="text" id="findText" onkeyup="disableReplace()" size="19">
+					</td>
+					<td align="center" class="blacktext bold">
+						Replace:<br>
+						<input type="text" id="replaceText" size="19" disabled>
+					</td>
+					<td rowspan="2" align="center" class="blacktext bold">
+						<button type="button" id="repBut" onclick="findReplace()" disabled>Replace</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height ="30px" align="center">
+						<span id="replacementsMade" class="greentext bold"><div class="blacktext">No replacement made.</div></span>
+					</td>
+				</tr>
+				<tr>
+					<td class="blacktext bold">
+						<div class="blacktext bold">Select Source Language: </div>
+						<select name="sl">
+							<option value="en" selected>English</option>
+							<option value="ms">Malay</option>
+						</select>
+					</td>
+					<td colspan="2">
+						<div class="blacktext bold">Select Translated Language: </div>
+						<input type="radio" name="tl" value="en">English
+						<input type="radio" name="tl" value="zh-CN">Chinese
+						<input type="radio" name="tl" value="ms">Malay
+						<input type="radio" name="tl" value="ja">Japanese
+						<input type="radio" name="tl" value="ko" checked>Korean
+					</td>
+					<td rowspan="2" align="center">
+						<button type="submit" id="transBut">Translate</button><br>
+						<br>
+						<button type="reset" id="resetBut" >Reset Form</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+<br><br><br>
+</body>
 </html>
