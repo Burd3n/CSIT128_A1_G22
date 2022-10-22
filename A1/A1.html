@@ -299,60 +299,53 @@
 		<form action="https://translate.google.com" method="get" target="blank">
 			<table id="mainTable" border="1">
 				<tr height="30px">
-					<td width="250px" class="blacktext bold">
-						Name:
-					</td>
+					<td width="250px">Name:</td>
 					<td colspan="3" width="550px">
 						<input type="text" id="fname" onkeyup="validateName()" placeholder="No special characters allowed." size="30" >
-						<span id="nameError" class="redtext bold"></span>
+						<span id="nameError"></span>
 						<br>
 					</td>
 				</tr>
 				<tr height="30px">
-					<td class="blacktext bold">
-						Module Code:
-					</td>
+					<td>Module Code:</td>
 					<td colspan="3">
 						<input type="text" id="modcode" onkeyup="validateMod()" maxlength="7" size="30" placeholder="Format: AB123">
-						<span id="modError" class="redtext bold"></span>
+						<span id="modError"></span>
 						<br>
 					</td>
 				</tr>
 				<tr height ="30px" >
-					<td class="blacktext bold">
-						Current Date & Time:<br>
-					</td>
+					<td>Current Date & Time:<br></td>
 					<td colspan="3">
 						<body onload="currentDate()">
 						<input id="date" type="text" size="30" readonly>
 					</td>
 				</tr>
 				<tr>
-					<td rowspan="2" height="100px" class="blacktext bold">
+					<td rowspan="2" height="100px">
 						Message:<br>
 						<textarea name="text" id="msgText" rows="3" cols="20" maxlength="500">Hello 202210</textarea><br>
-						<div class="redtext bold">*Max 500 Characters</div>
 					</td>
-					<td align="center" class="blacktext bold">
+					<td align="center">
 						Find:<br>
 						<input type="text" id="findText" onkeyup="disableReplace()" size="19">
 					</td>
-					<td align="center" class="blacktext bold">
+					<td align="center">
 						Replace:<br>
 						<input type="text" id="replaceText" size="19" disabled>
 					</td>
-					<td rowspan="2" align="center" class="blacktext bold">
+					<td rowspan="2" align="center">
 						<button type="button" id="repBut" onclick="findReplace()" disabled>Replace</button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" height ="30px" align="center">
-						<span id="replacementsMade" class="greentext bold"><div class="blacktext">No replacement made.</div></span>
+						<span id="replacementsMade" class="greentext bold"><div>No replacement made.</div></span>
 					</td>
 				</tr>
 				<tr>
-					<td class="blacktext bold">
-						<div class="blacktext bold">Select Source Language: </div>
+					<td>
+						<div>Select Source Language: </div>
 						<select name="sl">
 							<option value="en" selected>English</option>
 							<option value="ms">Malay</option>
