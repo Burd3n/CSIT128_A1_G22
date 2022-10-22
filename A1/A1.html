@@ -147,4 +147,157 @@
 			</dd>
 		</dl>
 	</body>
+	<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  <title>Part 4</title>
+
+
+  <!-- Scripts -->
+  <script>
+  function currentDate() 
+  {
+	/* declaring month */
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+    ];
+	/* declaring day */
+	const daynames = ["Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var today = new Date();
+    var date = today.getDate()+' '+monthNames[today.getMonth()]+' '+today.getFullYear();
+    var day = daynames[today.getDay()]+' '+today.getHours()+':'+today.getMinutes();
+
+  document.getElementById('date').value = date +' ' + day;
+  }
+  </script>
+
+
+  <script>
+  function StringSearch() 
+  {
+    var SearchTerm = document.getElementById("text_box_1").value;
+    var TextSearch = document.getElementById("t4").value;
+
+    if (SearchTerm.length > 0 && TextSearch.indexOf(SearchTerm) > -1) 
+	{
+      alert("String Found. Search Complete");
+    } else 
+	{
+      alert("No Data found in Text Area");
+    }
+  }
+  </script>
+
+  <script>
+    function findReplace()
+	{
+      /* declare variables to get the value */
+      var userText = document.getElementById("t4").value;
+      var find = document.getElementById("text_box_1").value;
+      var replace = document.getElementById("text_box_2").value;
+      var newText;
+      var count = 0;
+      var i = 0;
+      var index = userText.indexOf(find);
+
+      /*break the strong of words into substrings and join back after*/
+      newText = userText.split(find).join(replace);
+
+      /*loops according to number of substrings*/
+      for (i=0; i < userText.split(" ").length; i++) 
+	  {
+        if (index > -1) 
+		{
+          ++count;
+          index = userText.indexOf(find, ++index);
+        }
+      }
+      document.getElementById("t4").value = newText;
+      document.getElementById("replacement").innerHTML = count + " " + "replacement(s) made";
+    }
+  </script>
+
+</head>
+
+
+
+<body onload="currentDate()">
+
+<form action=" " method="get">
+
+<div>
+  Name:<br>
+  <input type="text" name="t1" size="30" placeholder="Yang Run" pattern="[A-Za-z0-9]{1,}" required><br>
+
+  Module Code:<br>
+  <input type="text" name="t2" size="30" pattern="[A-Z]{4}[0-9]{3}" required><br>
+
+  Date: <br>
+  <input type="text" name ="t3" id="date"/ readonly><br>
+
+
+<br><br>
+
+</div>
+
+</form>
+
+<form action="https://translate.google.com">
+
+<div>
+
+  <textarea name="t4" id="t4" rows="3" cols="20">
+    Hello 202210.
+
+  </textarea><br>
+
+
+
+    Search For: <br>
+  <input type="text" name="text_box_1" id="text_box_1">
+  <button type="button" id="button1" onclick="StringSearch();">Search</button><br>
+
+
+    Replace with: <br>
+  <input type="text" name="text_box_2" id ="text_box_2">
+  <button type"button" id="button2" onclick="findReplace()">Replace</button>
+
+  <br>
+</div>
+
+<br>
+
+<div id="sourceLang">
+
+  Select Source Language: <br>
+  <select name="sl" id="sl">
+
+    <option value="eng" selected="selected">English</option>
+    <option value="mal">Malay</option>
+  </select>
+</div>
+
+<br>
+
+<div name="tl" id="tl">
+  Select Target Language: <br>
+  <input type="radio" name= "lang" value="ko" checked>Korean
+  <input type="radio" name= "lang" value="en">English
+  <input type="radio" name= "lang" value="zh-CN">Chinese
+  <input type="radio" name= "lang" value="ma">Malay
+  <input type="radio" name= "lang" value="ja">Japanese
+</div>
+
+
+<input type="submit" value="Translate">
+
+<input type="reset" value="Reset form">
+
+</form>
+
+
+</body>
 </html>
